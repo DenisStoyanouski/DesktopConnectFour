@@ -12,18 +12,20 @@ public class ConnectFour extends JFrame {
         setTitle("Connect Four");
 
 
+
         Engine newArray = new Engine();
         for (String[] row : newArray.fillGrid()) {
             for(String column : row) {
-                JButton button = new JButton();
+                JButton button = new JButton(column);
+                button.setName("Button" + column);
                 add(button);
-                JLabel label = new JLabel(column);
+                /*JLabel label = new JLabel(column);
                 label.setHorizontalAlignment(SwingConstants.CENTER);
                 label.setVerticalAlignment(SwingConstants.CENTER);
                 label.setFont(new Font("Courier", Font.BOLD,12));
                 label.setFont(label.getFont().deriveFont(15f));
 
-                button.add(label);
+                button.add(label);*/
             }
         }
         setLayout(new GridLayout(6, 7, 1, 1));
