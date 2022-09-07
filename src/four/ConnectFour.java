@@ -21,6 +21,7 @@ public class ConnectFour extends JFrame implements ActionListener {
             for(String column : row) {
                 JButton button = new JButton(" ");
                 button.setName("Button" + column);
+                button.setFocusPainted(false);
                 button.addActionListener(this);
                 add(button);
 
