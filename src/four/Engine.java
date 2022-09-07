@@ -48,5 +48,11 @@ public class Engine {
         firstPlayer = !firstPlayer;
     }
 
+    static void resetAll() {
+        for (JButton b : ConnectFour.buttons) {
+            b.setText(" ");
+        }
+    }
+
 
 }
