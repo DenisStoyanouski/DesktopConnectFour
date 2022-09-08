@@ -30,7 +30,6 @@ public class ConnectFour extends JFrame {
                 button.setFocusPainted(false);
                 button.addActionListener(actionEvent -> {
                     Engine.fillBoard(button.getName());
-                    Engine.checkWinner();
                 });
                 panelButtons.add(button);
                 board.put(String.format("%c%d", ch, i), button);
