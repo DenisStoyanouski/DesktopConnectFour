@@ -2,14 +2,13 @@ package four;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 import static four.Engine.board;
 
 
 public class ConnectFour extends JFrame {
-    final int LENGTH = 7;
-    static final int HEIGHT = 6;
+    final static int LENGTH = 7;
+    final static int HEIGHT = 6;
     public ConnectFour() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 400);

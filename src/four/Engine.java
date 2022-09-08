@@ -17,13 +17,13 @@ public class Engine {
          for (int i = 1; i <= ConnectFour.HEIGHT; i++) {
              String generatedKey = keyOfButton.charAt(0) + String.valueOf(i);
              if (" ".equals(board.get(generatedKey).getText())) {
-                 fillHelper(board.get(generatedKey));
+                 fillCell(board.get(generatedKey));
                  break;
              }
          }
      }
 
-    private static void fillHelper(JButton button) {
+    private static void fillCell(JButton button) {
         if (firstPlayer) {
             button.setText("X");
         } else {
