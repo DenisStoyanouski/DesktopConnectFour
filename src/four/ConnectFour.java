@@ -4,11 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static four.Engine.board;
 
 
 public class ConnectFour extends JFrame {
-
-    static ArrayList<JButton> buttons = new ArrayList<>();
     final int LENGTH = 7;
     static final int HEIGHT = 6;
     public ConnectFour() {
@@ -20,6 +19,7 @@ public class ConnectFour extends JFrame {
         setLayout(new BorderLayout());
 
         JPanel panelButtons = new JPanel();
+        panelButtons.setSize(300,300);
         panelButtons.setLayout(new GridLayout(6, 7, 1, 1));
         for (int i = HEIGHT; i >= 1; i--) {
             for (int j = 0; j < LENGTH; j++) {
@@ -29,9 +29,12 @@ public class ConnectFour extends JFrame {
                 button.setName(name);
                 button.setBackground(Color.GRAY);
                 button.setFocusPainted(false);
-                button.addActionListener(actionEvent -> Engine.fillingBoard(ch));
+                button.addActionListener(actionEvent -> {
+                    Engine.fillBoard(button.getName());
+                    Engine.checkWinner();
+                });
                 panelButtons.add(button);
-                buttons.add(button);
+                board.put(String.format("%c%d", ch, i), button);
             }
         }
         add(panelButtons, BorderLayout.CENTER);
