@@ -61,5 +61,17 @@ public class Engine {
 
     }
 
+    static boolean isColumnFilled(String keyOfButton) {
+         boolean isFilled = true;
+         String letterOfKey = String.valueOf(keyOfButton.charAt(0));
+         for(String key : board.keySet()) {
+             if (key.matches(String.format("%s.", letterOfKey)) && " ".equals(board.get(key).getText())){
+                     isFilled = false;
+                     break;
+             }
+         }
+         return isFilled;
+    }
+
 
 }
