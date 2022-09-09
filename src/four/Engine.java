@@ -42,6 +42,7 @@ public class Engine {
             button.setBackground(Color.GRAY);
         }
         isGameOver = false;
+        firstPlayer = true;
     }
 
     static void checkWinner(String generatedKey, String letter) { //check winner by keyOfButton and letter;//
@@ -69,20 +70,19 @@ public class Engine {
 
          char letterOfKey = generatedKey.charAt(0);
          char numberOfKey = generatedKey.charAt(1);
-         while (letterOfKey >= 'A' || numberOfKey >= '1') {
+         while ((letterOfKey != 'A') || (numberOfKey != '1')) {
              if (letterOfKey == 'A' || numberOfKey == '1') {
                  break;
              }
              letterOfKey--;
              numberOfKey--;
          }
-         System.out.println(letterOfKey + "" + numberOfKey);
 
          ArrayList<String> diagonalLiftRight = new ArrayList<>();
          char startNumber = numberOfKey;
          char startLetter = letterOfKey;
 
-         while (true) {
+         while (startLetter != 'G' || startNumber != '6') {
              String key = startLetter + "" + startNumber;
              diagonalLiftRight.add(key);
              startLetter++;
@@ -91,7 +91,6 @@ public class Engine {
                  break;
              }
          }
-         System.out.println(diagonalLiftRight);
          return diagonalLiftRight;
     }
 
@@ -99,8 +98,8 @@ public class Engine {
 
         char letterOfKey = generatedKey.charAt(0);
         char numberOfKey = generatedKey.charAt(1);
-        while (numberOfKey <= '6' || letterOfKey >= 'A') {
-            if(letterOfKey == 'A' || numberOfKey == '6') {
+        while ((numberOfKey != '6') || (letterOfKey != 'A')) {
+            if (letterOfKey == 'A' || numberOfKey == '6') {
                 break;
             }
             letterOfKey--;
@@ -111,7 +110,7 @@ public class Engine {
         char startLetter = letterOfKey;
         char startNumber = numberOfKey;
 
-        while (startNumber >= '1' || startLetter <= 'G') {
+        while ((startNumber != '1') || (startLetter != 'G')) {
             String key = startLetter + "" + startNumber;
             diagonalLiftRight.add(key);
             startLetter++;
@@ -120,8 +119,6 @@ public class Engine {
                 break;
             }
         }
-
-        System.out.println(diagonalLiftRight);
         return diagonalLiftRight;
     }
 

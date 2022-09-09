@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 import static four.Engine.board;
-import static four.Engine.hasLineFour;
 
 
 public class ConnectFour extends JFrame {
