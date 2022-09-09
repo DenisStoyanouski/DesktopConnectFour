@@ -2,6 +2,8 @@ package four;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +12,7 @@ public class Engine {
 
     static Map<String, JButton> board = new HashMap<>();
     private static boolean firstPlayer = true;
+    static boolean isGameOver = false;
 
 
      static void fillBoard(String nameOfButton) {
@@ -18,7 +21,7 @@ public class Engine {
              String generatedKey = keyOfButton.charAt(0) + String.valueOf(i);
              if (" ".equals(board.get(generatedKey).getText())) {
                  fillCell(board.get(generatedKey));
-                 checkWinner(keyOfButton, board.get(generatedKey).getText());
+                 checkWinner(generatedKey, board.get(generatedKey).getText());
                  break;
              }
          }
@@ -38,40 +41,41 @@ public class Engine {
             button.setText(" ");
             button.setBackground(Color.GRAY);
         }
+        isGameOver = false;
     }
 
-    static void checkWinner(String keyOfButton, String letter) { //check winner by keyOfButton and letter;//
-        String checker = letter.repeat(4);
-        Map<String, String> line = new HashMap<>();
-
-        String letterOfKey = String.valueOf(keyOfButton.charAt(0));
-        String numberOfKey = String.valueOf(keyOfButton.charAt(1));
-        StringBuilder horizontal = new StringBuilder();
-        for (var entry : board.entrySet()) {
-            if (entry.getKey().contains(letterOfKey)) {
-                line.put(entry.getKey(), entry.getValue().getText());
+    static void checkWinner(String generatedKey, String letter) { //check winner by keyOfButton and letter;//
+        ArrayList<String> horizontalLine = new ArrayList<>();
+        ArrayList<String> verticalLine = new ArrayList<>();
+        String letterOfKey = String.valueOf(generatedKey.charAt(0));
+        String numberOfKey = String.valueOf(generatedKey.charAt(1));
+        // check horizontal line
+        for (var key : board.keySet()) {
+            if (key.matches(String.format("[A-G]%s", numberOfKey))) {
+                horizontalLine.add(key);
+            }
+            if (key.matches(String.format("%s[1-6]", letterOfKey))) {
+                verticalLine.add(key);
             }
         }
-
-
-        String vertical;
-        String diagonalLeftRight;
-        String diagonalRightLeft;
+        hasLineFour(horizontalLine, letter);
+        hasLineFour(verticalLine, letter);
 
 
     }
 
-    static boolean isColumnFilled(String keyOfButton) {
-         boolean isFilled = true;
-         String letterOfKey = String.valueOf(keyOfButton.charAt(0));
-         for(String key : board.keySet()) {
-             if (key.matches(String.format("%s.", letterOfKey)) && " ".equals(board.get(key).getText())){
-                     isFilled = false;
-                     break;
+    static void hasLineFour(ArrayList<String> line, String letter) {
+         String checker = letter.repeat(4);
+         line.sort(Comparator.naturalOrder());
+         StringBuilder lineLetter = new StringBuilder();
+         line.forEach(key -> lineLetter.append(board.get(key).getText()));
+         if (lineLetter.toString().contains(checker)) {
+             isGameOver = true;
+             int index = lineLetter.indexOf(checker);
+             for (int j = index; j < index + 4; j++) {
+                 board.get(line.get(j)).setBackground(Color.GREEN);
              }
          }
-         return isFilled;
     }
-
 
 }

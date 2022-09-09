@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import static four.Engine.board;
+import static four.Engine.hasLineFour;
 
 
 public class ConnectFour extends JFrame {
@@ -29,7 +30,9 @@ public class ConnectFour extends JFrame {
                 button.setBackground(Color.GRAY);
                 button.setFocusPainted(false);
                 button.addActionListener(actionEvent -> {
-                    Engine.fillBoard(button.getName());
+                    if (!Engine.isGameOver) {
+                        Engine.fillBoard(button.getName());
+                    }
                 });
                 panelButtons.add(button);
                 board.put(String.format("%c%d", ch, i), button);
