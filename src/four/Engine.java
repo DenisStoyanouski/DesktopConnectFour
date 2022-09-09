@@ -9,11 +9,9 @@ import java.util.Map;
 
 public class Engine {
 
-
-    static Map<String, JButton> board = new HashMap<>();
+    static Map<String, JButton> board = new HashMap<>(); //key - coordinate, value - button;
     private static boolean firstPlayer = true;
     static boolean isGameOver = false;
-
 
      static void fillBoard(String nameOfButton) {
          String keyOfButton = nameOfButton.substring(nameOfButton.length() - 2);
@@ -63,11 +61,10 @@ public class Engine {
         hasLineFour(verticalLine, letter);
         hasLineFour(createDiagonalFromLeftToRight(generatedKey), letter);
         hasLineFour(createDiagonalFromRightToLeft(generatedKey), letter);
-
     }
 
     static ArrayList<String> createDiagonalFromLeftToRight(String generatedKey) {
-
+         //start point of diagonal
          char letterOfKey = generatedKey.charAt(0);
          char numberOfKey = generatedKey.charAt(1);
          while ((letterOfKey != 'A') || (numberOfKey != '1')) {
@@ -77,7 +74,7 @@ public class Engine {
              letterOfKey--;
              numberOfKey--;
          }
-
+        //diagonal from left to right
          ArrayList<String> diagonalLiftRight = new ArrayList<>();
          char startNumber = numberOfKey;
          char startLetter = letterOfKey;
@@ -95,7 +92,7 @@ public class Engine {
     }
 
     static ArrayList<String> createDiagonalFromRightToLeft(String generatedKey) {
-
+        //start point of diagonal
         char letterOfKey = generatedKey.charAt(0);
         char numberOfKey = generatedKey.charAt(1);
         while ((numberOfKey != '6') || (letterOfKey != 'A')) {
@@ -105,8 +102,8 @@ public class Engine {
             letterOfKey--;
             numberOfKey++;
         }
-
-         ArrayList<String> diagonalLiftRight = new ArrayList<>();
+        //diagonal from right to left
+        ArrayList<String> diagonalLiftRight = new ArrayList<>();
         char startLetter = letterOfKey;
         char startNumber = numberOfKey;
 
@@ -122,8 +119,6 @@ public class Engine {
         return diagonalLiftRight;
     }
 
-
-
     static void hasLineFour(ArrayList<String> line, String letter) {
          String checker = letter.repeat(4);
          line.sort(Comparator.naturalOrder());
@@ -137,5 +132,4 @@ public class Engine {
              }
          }
     }
-
 }

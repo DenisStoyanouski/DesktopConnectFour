@@ -16,7 +16,7 @@ public class ConnectFour extends JFrame {
         setVisible(true);
         setTitle("Connect Four");
         setLayout(new BorderLayout());
-
+        //panel with buttons
         JPanel panelButtons = new JPanel();
         panelButtons.setSize(300,300);
         panelButtons.setLayout(new GridLayout(6, 7, 1, 1));
@@ -39,7 +39,7 @@ public class ConnectFour extends JFrame {
         }
         add(panelButtons, BorderLayout.CENTER);
         setVisible(true);
-
+        //panel with button "Reset"
         JPanel panelReset = new JPanel();
         JButton buttonReset = new JButton();
         buttonReset.setName("ButtonReset");
@@ -47,8 +47,6 @@ public class ConnectFour extends JFrame {
         buttonReset.addActionListener(actionEvent -> Engine.resetAll());
         panelReset.add(buttonReset);
         add(panelReset, BorderLayout.SOUTH);
-
-
     }
 
 }
